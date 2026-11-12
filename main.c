@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 int main() {
-    char nomes[20][50];
-    int quantidade[20];
+    char nomes[50][50];
+    int quantidade[50];
     char parar;
     char operacao[10];
     int i = 0;
@@ -40,7 +40,7 @@ int main() {
             i = 0;
             printf("\n============================= Estoque Atual =============================\n");
             
-            while (fscanf(file, "%s %d", nomes[i], &quantidade[i]) == 2) {
+            while (fscanf(file, "%%49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
                 printf("Nome: %s\n", nomes[i]);
                 printf("Quantidade: %d\n\n", quantidade[i]);
                 i++;
