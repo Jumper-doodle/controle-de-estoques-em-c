@@ -40,7 +40,7 @@ int main() {
             i = 0;
             printf("\n============================= Estoque Atual =============================\n");
             
-            while (fscanf(file, "%%49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
+            while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
                 printf("Nome: %s\n", nomes[i]);
                 printf("Quantidade: %d\n\n", quantidade[i]);
                 i++;
