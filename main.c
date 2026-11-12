@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
     char nomes[50][50];
@@ -7,11 +8,6 @@ int main() {
     char parar;
     char operacao[10];
     int i = 0;
-
-    FILE *file = fopen("inventory.txt", "r+");
-    if (file == NULL) {
-        file = fopen("inventory.txt", "w+");
-    }
 
     do {
         printf("===============================\n");
@@ -32,27 +28,51 @@ int main() {
         }
 
         if (operacao[0] == '4') {
-            printf("Tudo bem, até a próxima!\n");
-            fclose(file);
+            printf("Obrigado por usar o Controle de Estoques! Até a próxima.\n");
             return 0;
         } else if (operacao[0] == '3') {
-            rewind(file);
-            i = 0;
+            FILE *file = fopen("inventory.txt", "r");
             printf("\n============================= Estoque Atual =============================\n");
-            
-            while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
-                printf("Nome: %s\n", nomes[i]);
-                printf("Quantidade: %d\n\n", quantidade[i]);
-                i++;
-            }
-            
-            if (i == 0) {
+            if (file == NULL) {
                 printf("O estoque está vazio.\n\n");
+            } else {
+                i = 0;
+                while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
+                    printf("Nome: %s\n", nomes[i]);
+                    printf("Quantidade: %d\n\n", quantidade[i]);
+                    i++;
+                }
+                if (i == 0) {
+                    printf("O estoque está vazio.\n\n");
+                }
+                fclose(file);
             }
         } else if (operacao[0] == '2') {
             
         } else if (operacao[0] == '1') {
-            
+            char novoitem[50];
+            int nq;
+            int existe = 0;
+
+            printf("Digite o nome do item:\n");
+            scanf(" %49[^\n]", novoitem);
+            printf("Digite a quantidade:\n");
+            scanf("%d", &nq);
+            while (getchar() != '\n');
+
+            i = 0;
+            FILE *file = fopen("inventory.txt", "r");
+            if (file != NULL) {
+                while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
+                    if (strcmp(nomes[i], novoitem) == 0) {
+                        quantidade[i] = quantidade[i] + nq;
+                        existe = 1;
+                    }
+                    i++;
+                }
+                fclose(file);
+            }
+
         }
 
         printf("Deseja realizar outra operação? (s/n): ");
@@ -66,13 +86,11 @@ int main() {
         while (getchar() != '\n');
 
         if (parar == 'n' || parar == 'N') {
-            printf("Obrigado por usar o sistema! Até a próxima.\n");
-            fclose(file);
+            printf("Obrigado por usar o Controle de Estoques! Até a próxima.\n");
             return 0;
         }
 
     } while (parar == 's' || parar == 'S');
 
-    fclose(file);
     return 0;
 }
