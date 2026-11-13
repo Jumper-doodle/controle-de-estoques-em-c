@@ -48,7 +48,41 @@ int main() {
                 fclose(file);
             }
         } else if (operacao[0] == '2') {
-            
+            char itemmenos[50];
+            int qr;
+            int criado;
+
+            printf("Digite o nome do item:\n");
+            scanf(" %49[^\n]", itemmenos);
+            printf("Digite a quantidade a ser removida:\n");
+            scanf("%d", &qr);
+            while (getchar() != '\n');
+
+            i = 0;
+            FILE *file = fopen("inventory.txt", "r");
+            if (file != NULL) {
+                while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
+                    if (strcmp(nomes[i], itemmenos) == 0) {
+                        criado = 1;
+                    }
+                    i++;
+                }
+                
+                fclose(file);
+            }
+            if(criado=0) {
+                printf("Item não encontrado.");
+            }
+            else if(itemmenos > quantidade[i]) {
+                printf("Estoque insuficiente. Quantidade disponível: %d", &quantidade[i]);
+            }
+            else if(itemmenos = quantidade[i]) {
+                printf("Item removido do estoque!");
+            }
+            else {
+                printf("Quantidade atualizada com sucesso!");
+                    
+            }
         } else if (operacao[0] == '1') {
             char novoitem[50];
             int nq;
@@ -65,7 +99,6 @@ int main() {
             if (file != NULL) {
                 while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
                     if (strcmp(nomes[i], novoitem) == 0) {
-                        quantidade[i] = quantidade[i] + nq;
                         existe = 1;
                     }
                     i++;
@@ -79,10 +112,10 @@ int main() {
                     fprintf(file, "\n%d", nq);
                     printf("Item adicionado com sucesso!");
                         fclose(file);
-                    
-            
-
         }
+                else {
+                    
+                }
         }
 
         printf("Deseja realizar outra operação? (s/n): ");
