@@ -70,7 +70,15 @@ int main() {
                     }
                     i++;
                 }
+                
                 fclose(file);
+                FILE *file = fopen("inventory;txt", "a");
+                if(existe!=1) {
+                    fprintf(file, "\n%s", novoitem);
+                    fprintf(file, "\n%d", nq);
+                    printf("Item adicionado com sucesso!);
+                        fclose(file);
+                    
             }
 
         }
