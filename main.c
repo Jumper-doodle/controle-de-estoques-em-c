@@ -85,6 +85,10 @@ int main() {
             char novoitem[50];
             int nq;
             int existe = 0;
+            int la = -1;
+            char tempnomes[50][50];
+            int tempquantidade[50];
+        
 
             printf("Digite o nome do item:\n");
             scanf(" %49[^\n]", novoitem);
@@ -98,6 +102,7 @@ int main() {
                 while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
                     if (strcmp(nomes[i], novoitem) == 0) {
                         existe = 1;
+                        la = i;
                     }
                     i++;
                 }
@@ -112,6 +117,32 @@ int main() {
                 fclose(file);
             } else {
                 fclose(file);
+                int j=0;
+                while (j < i) {
+                    strcpy(tempnomes[j], nomes[j]);
+                    tempquantidade[j] = quantidade[j];
+                    j++;
+                }
+                file = fopen("inventory.txt", "w");
+                j=0;
+                while(j < la) {
+                    fprintf(file, "%s\n", tempnomes[j]);
+                    fprintf(file, "%d\n", tempquantidade[j]);
+                    j++;
+                }
+                fclose(file);
+                file = fopen("inventory.txt", "a");
+                fprintf(file, "%s\n", novoitem);
+                fprintf(file, "%d\n", tempquantidade[la] + nq);
+                j++;
+
+                while(j < i) {
+                    fprintf(file, "%s\n", tempnomes[j]);
+                    fprintf(file, "%d\n", tempquantidade[j]);
+                    j++;
+                }
+                fclose(file);
+                printf("Item adicionado com sucesso!");
             }
         }
 
