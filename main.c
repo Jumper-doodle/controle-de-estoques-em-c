@@ -68,10 +68,10 @@ int main() {
                         aqui = i;
                     }
                     i++;
-                    fclose(file)
+                    fclose(file);
                 }
                 
-                ;
+                
             }
             if(criado==0) {
                 printf("Item não encontrado.");
