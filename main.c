@@ -51,6 +51,7 @@ int main() {
             char itemmenos[50];
             int qr;
             int criado = 0;
+            int aqui = -1;
 
             printf("Digite o nome do item:\n");
             scanf(" %49[^\n]", itemmenos);
@@ -64,6 +65,7 @@ int main() {
                 while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
                     if (strcmp(nomes[i], itemmenos) == 0) {
                         criado = 1;
+                        aqui = i;
                     }
                     i++;
                 }
@@ -73,10 +75,10 @@ int main() {
             if(criado==0) {
                 printf("Item não encontrado.");
             }
-            else if(itemmenos > quantidade[i]) {
-                printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[i]);
+            else if(qr > quantidade[aqui]) {
+                printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[aqui]);
             }
-            else if(itemmenos = quantidade[i]) {
+            else if(qr = quantidade[aqui]) {
                 printf("Item removido do estoque!");
             }
             else {
