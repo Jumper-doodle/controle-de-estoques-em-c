@@ -68,23 +68,18 @@ int main() {
                         aqui = i;
                     }
                     i++;
-                    fclose(file);
                 }
-                
-                
+                fclose(file);
             }
-            if(criado==0) {
+
+            if (criado == 0) {
                 printf("Item não encontrado.");
-            }
-            else if(qr > quantidade[aqui]) {
+            } else if (qr > quantidade[aqui]) {
                 printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[aqui]);
-            }
-            else if(qr == quantidade[aqui]) {
+            } else if (qr == quantidade[aqui]) {
                 printf("Item removido do estoque!");
-            }
-            else {
+            } else {
                 printf("Quantidade atualizada com sucesso!");
-                    
             }
         } else if (operacao[0] == '1') {
             char novoitem[50];
@@ -106,21 +101,18 @@ int main() {
                     }
                     i++;
                 }
-                
-                
+                fclose(file);
             }
-            fclose(file);
             
-                file = fopen("inventory.txt", "a");
-                if(existe!=1) {
-                    fprintf(file, "\n%s", novoitem);
-                    fprintf(file, "\n%d", nq);
-                    printf("Item adicionado com sucesso!");
-                        fclose(file);
-        }
-                else {
-                    
-                }
+            file = fopen("inventory.txt", "a");
+            if (existe != 1) {
+                fprintf(file, "\n%s", novoitem);
+                fprintf(file, "\n%d", nq);
+                printf("Item adicionado com sucesso!");
+                fclose(file);
+            } else {
+                fclose(file);
+            }
         }
 
         printf("Deseja realizar outra operação? (s/n): ");
