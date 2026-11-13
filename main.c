@@ -50,7 +50,7 @@ int main() {
         } else if (operacao[0] == '2') {
             char itemmenos[50];
             int qr;
-            int criado;
+            int criado = 0;
 
             printf("Digite o nome do item:\n");
             scanf(" %49[^\n]", itemmenos);
@@ -70,11 +70,11 @@ int main() {
                 
                 fclose(file);
             }
-            if(criado=0) {
+            if(criado==0) {
                 printf("Item não encontrado.");
             }
             else if(itemmenos > quantidade[i]) {
-                printf("Estoque insuficiente. Quantidade disponível: %d", &quantidade[i]);
+                printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[i]);
             }
             else if(itemmenos = quantidade[i]) {
                 printf("Item removido do estoque!");
@@ -104,8 +104,10 @@ int main() {
                     i++;
                 }
                 
-                fclose(file);
+                
             }
+            fclose(file);
+            
                 file = fopen("inventory.txt", "a");
                 if(existe!=1) {
                     fprintf(file, "\n%s", novoitem);
