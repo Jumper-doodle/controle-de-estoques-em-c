@@ -68,9 +68,10 @@ int main() {
                         aqui = i;
                     }
                     i++;
+                    fclose(file)
                 }
                 
-                fclose(file);
+                ;
             }
             if(criado==0) {
                 printf("Item não encontrado.");
@@ -78,7 +79,7 @@ int main() {
             else if(qr > quantidade[aqui]) {
                 printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[aqui]);
             }
-            else if(qr = quantidade[aqui]) {
+            else if(qr == quantidade[aqui]) {
                 printf("Item removido do estoque!");
             }
             else {
