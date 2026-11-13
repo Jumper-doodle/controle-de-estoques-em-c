@@ -5,7 +5,7 @@
 int main() {
     char nomes[50][50];
     int quantidade[50];
-    char parar;
+    char parar = 's';
     char operacao[10];
     int i = 0;
 
@@ -72,15 +72,17 @@ int main() {
                 }
                 
                 fclose(file);
-                FILE *file = fopen("inventory;txt", "a");
+            }
+                file = fopen("inventory.txt", "a");
                 if(existe!=1) {
                     fprintf(file, "\n%s", novoitem);
                     fprintf(file, "\n%d", nq);
-                    printf("Item adicionado com sucesso!);
+                    printf("Item adicionado com sucesso!");
                         fclose(file);
                     
-            }
+            
 
+        }
         }
 
         printf("Deseja realizar outra operação? (s/n): ");
