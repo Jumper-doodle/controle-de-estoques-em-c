@@ -90,6 +90,7 @@ int j=0;
                     fprintf(file, "%s\n", nomes[j]);
                     fprintf(file, "%d\n", quantidade[j]);
                 }
+            }
                 fclose(file);
                 
                 printf("Item removido do estoque!");
@@ -107,6 +108,8 @@ int j=0;
             while (getchar() != '\n');
 
             i = 0;
+            existe=0;
+            la=-1;
             FILE *file = fopen("inventory.txt", "r");
             if (file != NULL) {
                 while (i < 50 && fscanf(file, " %49[^\n] %d", nomes[i], &quantidade[i]) == 2) {
