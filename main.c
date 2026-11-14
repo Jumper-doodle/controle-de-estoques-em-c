@@ -76,7 +76,28 @@ int main() {
                 printf("Item não encontrado.");
             } else if (qr > quantidade[aqui]) {
                 printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[aqui]);
+        
             } else if (qr == quantidade[aqui]) {
+                i=0;
+                while (i < aqui) {
+                    strcpy(tempnomes[i], nomes[i]);
+                    tempquantidade[i] = quantidade[i];
+                    i++;
+                }
+                FILE *file = fopen("inventory.txt", "w");
+                j=0;
+                while(j < la) {
+                    fprintf(file, "%s\n", tempnomes[j]);
+                    fprintf(file, "%d\n", tempquantidade[j]);
+                    j++;
+                }
+                fclose(file);
+                file = fopen("inventory.txt", "a");
+                for(j=la+1;j<50;j++) {
+                    fprintf(file, "%s\n", tempnomes[j]);
+                    fprintf(file, "%d\n", tempquantidade[j]);
+                    j++;
+                    fclose(file);
                 printf("Item removido do estoque!");
             } else {
                 printf("Quantidade atualizada com sucesso!");
