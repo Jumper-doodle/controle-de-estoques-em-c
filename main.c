@@ -95,6 +95,9 @@ int j=0;
             
                 
             }
+                printf("Item removido do estoque!");
+                fclose(file);
+            
             } else {
                 file = fopen("inventory.txt", "w");
                 j=0;
@@ -105,9 +108,7 @@ int j=0;
                 }
                 fclose(file);
                 
-                printf("Item removido do estoque!");
-                fclose(file);
-            
+                
         
                 file = fopen("inventory.txt", "a");
                 fprintf(file, "%s\n", itemmenos);
