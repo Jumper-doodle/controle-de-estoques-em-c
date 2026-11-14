@@ -8,6 +8,13 @@ int main() {
     char parar = 's';
     char operacao[10];
     int i = 0;
+char novoitem[50];
+            int nq;
+            int existe = 0;
+            int la = -1;
+            char tempnomes[50][50];
+            int tempquantidade[50];
+int j=0;
 
     do {
         printf("===============================\n");
@@ -96,19 +103,14 @@ int main() {
                 for(j=la+1;j<50;j++) {
                     fprintf(file, "%s\n", tempnomes[j]);
                     fprintf(file, "%d\n", tempquantidade[j]);
-                    j++;
+                }
                     fclose(file);
                 printf("Item removido do estoque!");
             } else {
                 printf("Quantidade atualizada com sucesso!");
             }
         } else if (operacao[0] == '1') {
-            char novoitem[50];
-            int nq;
-            int existe = 0;
-            int la = -1;
-            char tempnomes[50][50];
-            int tempquantidade[50];
+            
         
 
             printf("Digite o nome do item:\n");
@@ -138,7 +140,7 @@ int main() {
                 fclose(file);
             } else {
                 fclose(file);
-                int j=0;
+                j=0;
                 while (j < i) {
                     strcpy(tempnomes[j], nomes[j]);
                     tempquantidade[j] = quantidade[j];
