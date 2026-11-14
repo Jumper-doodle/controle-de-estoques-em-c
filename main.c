@@ -86,10 +86,12 @@ int j=0;
                 
                 FILE *file = fopen("inventory.txt", "w");
                 
-                for(j=0;j!=la;j++) {
+                for(j=0;j<i;j++) {
+                    if(j!=aqui) {
                     fprintf(file, "%s\n", nomes[j]);
                     fprintf(file, "%d\n", quantidade[j]);
-                }
+                    }
+                
             
                 fclose(file);
                 
