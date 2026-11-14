@@ -12,8 +12,6 @@ char novoitem[50];
             int nq;
             int existe = 0;
             int la = -1;
-            char tempnomes[50][50];
-            int tempquantidade[50];
 int j=0;
 
     do {
@@ -85,24 +83,19 @@ int j=0;
                 printf("Estoque insuficiente. Quantidade disponível: %d", quantidade[aqui]);
         
             } else if (qr == quantidade[aqui]) {
-                i=0;
-                while (i < aqui) {
-                    strcpy(tempnomes[i], nomes[i]);
-                    tempquantidade[i] = quantidade[i];
-                    i++;
-                }
+                
                 FILE *file = fopen("inventory.txt", "w");
                 j=0;
                 while(j < la) {
-                    fprintf(file, "%s\n", tempnomes[j]);
-                    fprintf(file, "%d\n", tempquantidade[j]);
+                    fprintf(file, "%s\n", nomes[j]);
+                    fprintf(file, "%d\n", quantidade[j]);
                     j++;
                 }
                 fclose(file);
                 file = fopen("inventory.txt", "a");
-                for(j=la+1;j<50;j++) {
-                    fprintf(file, "%s\n", tempnomes[j]);
-                    fprintf(file, "%d\n", tempquantidade[j]);
+                for(j=la+1;j<=i;j++) {
+                    fprintf(file, "%s\n", nomes[j]);
+                    fprintf(file, "%d\n", quantidade[j]);
                 }
                     fclose(file);
                 printf("Item removido do estoque!");
@@ -134,34 +127,28 @@ int j=0;
             
             file = fopen("inventory.txt", "a");
             if (existe != 1) {
-                fprintf(file, "\n%s", novoitem);
-                fprintf(file, "\n%d", nq);
+                fprintf(file, "%s\n", novoitem);
+                fprintf(file, "%d\n", nq);
                 printf("Item adicionado com sucesso!");
                 fclose(file);
             } else {
                 fclose(file);
                 j=0;
-                while (j < i) {
-                    strcpy(tempnomes[j], nomes[j]);
-                    tempquantidade[j] = quantidade[j];
-                    j++;
-                }
-                file = fopen("inventory.txt", "w");
-                j=0;
                 while(j < la) {
-                    fprintf(file, "%s\n", tempnomes[j]);
-                    fprintf(file, "%d\n", tempquantidade[j]);
+                    fprintf(file, "%s\n", nomes[j]);
+                    fprintf(file, "%d\n", quantidade[j]);
                     j++;
                 }
-                fclose(file);
+            
+        
                 file = fopen("inventory.txt", "a");
                 fprintf(file, "%s\n", novoitem);
-                fprintf(file, "%d\n", tempquantidade[la] + nq);
+                fprintf(file, "%d\n", quantidade[la] + nq);
                 j++;
 
                 while(j < i) {
-                    fprintf(file, "%s\n", tempnomes[j]);
-                    fprintf(file, "%d\n", tempquantidade[j]);
+                    fprintf(file, "%s\n", nomes[j]);
+                    fprintf(file, "%d\n", quantidade[j]);
                     j++;
                 }
                 fclose(file);
