@@ -90,10 +90,11 @@ int j=0;
                     fprintf(file, "%s\n", nomes[j]);
                     fprintf(file, "%d\n", quantidade[j]);
                 }
-            }
+            
                 fclose(file);
                 
                 printf("Item removido do estoque!");
+            }
             } else {
                 printf("Quantidade atualizada com sucesso!");
             }
@@ -130,12 +131,14 @@ int j=0;
                 fclose(file);
             } else {
                 fclose(file);
+                file = fopen("inventory.txt", "w");
                 j=0;
                 while(j < la) {
                     fprintf(file, "%s\n", nomes[j]);
                     fprintf(file, "%d\n", quantidade[j]);
                     j++;
                 }
+                fclose(file);
             
         
                 file = fopen("inventory.txt", "a");
