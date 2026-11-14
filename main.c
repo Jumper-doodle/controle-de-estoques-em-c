@@ -85,19 +85,13 @@ int j=0;
             } else if (qr == quantidade[aqui]) {
                 
                 FILE *file = fopen("inventory.txt", "w");
-                j=0;
-                while(j < la) {
+                
+                for(j=0;j!=la;j++) {
                     fprintf(file, "%s\n", nomes[j]);
                     fprintf(file, "%d\n", quantidade[j]);
-                    j++;
                 }
                 fclose(file);
-                file = fopen("inventory.txt", "a");
-                for(j=la+1;j<=i;j++) {
-                    fprintf(file, "%s\n", nomes[j]);
-                    fprintf(file, "%d\n", quantidade[j]);
-                }
-                    fclose(file);
+                
                 printf("Item removido do estoque!");
             } else {
                 printf("Quantidade atualizada com sucesso!");
