@@ -93,9 +93,7 @@ int j=0;
                     }
                 
             
-                fclose(file);
                 
-                printf("Item removido do estoque!");
             }
             } else {
                 file = fopen("inventory.txt", "w");
@@ -105,6 +103,9 @@ int j=0;
                     fprintf(file, "%d\n", quantidade[j]);
                     j++;
                 }
+                fclose(file);
+                
+                printf("Item removido do estoque!");
                 fclose(file);
             
         
